@@ -1,0 +1,27 @@
+name: Create Release Branch
+on:
+  workflow_dispatch:
+    inputs:
+      versionMajor:
+        description: 'Version Major'
+        required: true
+      versionMinor:
+        description: 'Version Minor'
+        required: true
+      versionPatch:
+        description: 'Version Patch'
+        required: true
+jobs:
+  createrelease:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code 
+      uses: actions/checkout@v2
+    - name: create a release branch
+      run: git checkout -b release/${{ github.event.inputs.versionMajor }}.${{ github.event.inputs.versionMinor }}.${{ github.event.inputs.versionPatch }}
+    - name: push release branch
+      run: git push origin release/${{ github.event.inputs.versionMajor }}.${{ github.event.inputs.versionMinor }}.${{ github.event.inputs.versionPatch }}
+    - name:  create pr
+      run: gh pr create --title "Testing 123" --body "This is a test" --base master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
