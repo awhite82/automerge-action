@@ -198,7 +198,7 @@ test("Missing require merge method skips PR", async () => {
   expect(await merge({ config, octokit }, pr)).toEqual(false);
 });
 
-test("Merge method doesn't have to be required", async  () => {
+test("Merge method doesn 't have to be required", async  () => {
   // GIVEN
   const pr = pullRequest();
   pr.labels = [{ name: "mergeme" }];
