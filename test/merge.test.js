@@ -215,7 +215,7 @@ test("Merge method doesn 't have to be required", async  () => {
   expect(mergeMethod).toEqual("merge");
 });
 
-test("Multiple merge method labels throw an error", async () => {
+test("Multiple merge method labels  throw an error", async () => {
   // GIVEN
   const pr = pullRequest();
   pr.labels = [{ name: "automerge" }, { name: "autosquash" }];
